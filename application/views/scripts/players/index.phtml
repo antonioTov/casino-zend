@@ -1,0 +1,72 @@
+<div class='legend2'>&#8658; Все игроки </div>
+
+<div class="tool_bar">
+	<span id="search"><img src="/design/img/search-icon.png" height="35"  title="Поиск"></span>
+	<span id="back"><img src="/design/img/back.png" height="35" onclick="history.back()" title="Назад"></span>
+	<span id="next"><img src="/design/img/next.png" height="35" onclick="history.forward()" title="Вперед"></span>
+	<a href="<?php echo $this->url(array('controller' => 'players', 'action' => 'add'), null, true) ?>" class="new"><img src="/design/img/add.png" height="25" style="float: left;"><span>Добавить игрока</span></a>
+</div>
+
+<div class="clear"></div>
+
+<div id="search-cont" class="<? echo ($this->showSearchForm) ? 'visible' : '' ?>">
+	<h1>
+		Поиск
+
+		<? if ( $this->count ) { ?>
+			<span>Найдено <b><? echo $this->count ?></b> игроков</span>
+		<? } ?>
+	</h1>
+
+	<?php echo $this->searchForm ?>
+
+</div>
+
+<? if ( count( $this->players ) > 0 ) { ?>
+
+	<form method="POST" id="view_form">
+		<table class="view-table">
+			<thead>
+			<tr class="table_header">
+				<th class="w40"><div class="td_center"><input type="checkbox" id="check_all"></div></th>
+				<th>Username</th>
+				<th>First name</th>
+				<th>Last name</th>
+				<th>Date of birth</th>
+				<th>E-mail</th>
+				<th>Create admin</th>
+				<th class="w40">Edit</th>
+				<th class="w40">Delete</th>
+			</tr>
+			</thead>
+			<tbody>
+			<? foreach($this->players as $player) { ?>
+				<tr>
+					<td><div class="td_center"><input type="checkbox" name="check[]" value="<? echo $player->id ?>"></div></td>
+					<td><a href="<?php echo $this->url(array('controller' => 'players', 'action' => 'edit', 'id' => $player->id)) ?>"><? echo $player->username ?></a></td>
+					<td><? echo $player->first_name ?></td>
+					<td><? echo $player->last_name ?></td>
+					<td class="td_center"><? echo date( 'd.m.Y', strtotime($player->birth_date) ) ?></td>
+					<td><? echo $player->email ?></td>
+					<td class="td_center"><? echo $player->adminLogin ?></td>
+					<td class="td_center"><a href="<?php echo $this->url(array('controller' => 'players', 'action' => 'edit', 'id' => $player->id)) ?>"><img src="/design/img/edit.png" title="редактировать" /></a></td>
+					<td class="td_center"><a href="<?php echo $this->url(array('controller' => 'players', 'action' => 'delete', 'id' => $player->id)) ?>" class="delete"><img src="/design/img/del.png" title="удалить"/></a></td>
+				</tr>
+			<? }	?>
+
+			</tbody>
+		</table>
+		<div class="table_bottom">
+			<div>
+				<select name="event" class="events">
+					<option value="">Действие...</option>
+					<option value="delete">Удалть</option>
+				</select>
+				<a href="#" class="new" id="event_apply" style="margin: 2px;">Применить</a>
+			</div>
+		</div>
+	</form>
+
+<? } else { ?>
+	<div class="error">Результатов не найдено</div>
+<? } ?>

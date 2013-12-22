@@ -1,0 +1,18 @@
+<div class="input_form">
+	<div class="top_form">
+		<div class="lockscreen"></div>
+		<div class="r3">¬ведите логин и пароль</div>
+	</div>
+
+<?php
+
+	if ( $this->message ) {
+		foreach( $this->message as $message ) { ?>
+			<div class="error"><?php	echo $this->escape($message) . '</div>';
+		}
+	}
+
+	echo $this->form;
+
+?>
+</div>

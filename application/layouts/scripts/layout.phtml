@@ -1,0 +1,67 @@
+<?php
+$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=windows-1251');
+
+echo $this->doctype(); ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<?php
+        echo $this->headMeta();
+    ?>
+
+	<title><?=$_SERVER["HTTP_HOST"];?> | Admin Panel</title>
+
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="/design/css/admin_style.css" />
+	<!--[if IE 8]><link rel="stylesheet" type="text/css" href="/design/css/IE8.css" /><![endif]-->
+
+	<link rel="shortcut icon" href="/design/img/favicon.ico">
+
+	<script type="text/javascript" src="/design/js/jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script type="text/javascript" src="/design/js/common.js"></script>
+
+	<!--[if lt IE 7]>
+	<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE7.js"></script>
+	<![endif]-->
+
+
+</head>
+
+<body>
+
+<div class="top">
+	<div class="header_title"><a  href="/"><? echo $_SERVER["HTTP_HOST"];?></a> | ADMINISTRATION</div>
+</div>
+
+<div class="wrapper">
+
+	<?php if (Zend_Auth::getInstance()->getIdentity()) { ?>
+		<div id="mainMenu">
+			<div class="jqueryslidemenu">
+				<ul>
+					<li><a href="/">Игроки</a></li>
+				</ul>
+			</div>
+			<div class="jqueryslidemenu" style="float: right;">
+				<ul>
+					<li><span class="auth-name"><?php if (Zend_Auth::getInstance()->getIdentity()) echo Zend_Auth::getInstance()->getIdentity()->login?></span></li>
+					<li><a href="/auth/logout">Выход</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="clear"></div>
+	<?php } ?>
+
+	<div class="container">
+
+		<div class="content"> <?php echo $this->layout()->content; ?></div>
+
+	</div>
+
+</div>
+
+</body>
+</html>
+
+
+

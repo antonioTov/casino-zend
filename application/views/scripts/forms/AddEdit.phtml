@@ -1,0 +1,41 @@
+<form class="add_edit_form" id="add_edit_form" name="add_edit_form" method="<?php echo $this->element->getMethod(); ?>">
+
+	<div class="fields_block">
+
+
+		<div class="form_item">
+			<div class="label">Username:</div>
+			<?php echo $this->element->username ?>
+		</div>
+
+		<div class="form_item">
+			<div class="label">First name:</div>
+			<?php echo $this->element->first_name ?>
+		</div>
+
+		<div class="form_item">
+			<div class="label">Last name:</div>
+			<?php echo $this->element->last_name ?>
+		</div>
+
+		<div class="form_item">
+			<div class="label">Date of birth:</div>
+			<?php echo $this->element->birth_date ?>
+		</div>
+
+		<div class="form_item">
+			<div class="label">E-mail:</div>
+			<?php echo $this->element->email ?>
+		</div>
+
+		<?php echo $this->element->admin_id ?>
+		<?php echo $this->element->context ?>
+		<?php echo $this->element->player_id ?>
+
+		<input type="submit" class="new" id="submit_btn" name="submitButton" value="Сохранить">
+
+	</div>
+
+	<div class="clear"></div>
+
+</form>
