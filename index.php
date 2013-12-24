@@ -25,7 +25,7 @@ $application = new Zend_Application(
 );
 $application->bootstrap()
             ->run();
-            
+
 echo "<style>
             .debug_info { border: 1px solid rgb(80, 175, 66); position: fixed; bottom: 10px; left: 10px; z-index: 99999999; }
             .debug_info tbody { background: rgb(180, 255, 157) !important; }

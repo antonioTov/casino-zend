@@ -5,6 +5,11 @@ class AuthController extends Zend_Controller_Action
 
 	public function indexAction()
 	{
+
+		if ( Zend_Auth::getInstance()->hasIdentity() ) {
+			$this->redirect('/');
+		}
+
 		$form = new Application_Form_Login();
 		$this->view->form = $form;
 
@@ -19,8 +24,11 @@ class AuthController extends Zend_Controller_Action
 				$adminModel	= new Application_Model_DbTable_Administrators();
 				$tableAdmin 	= $adminModel->info('name');
 				$authAdapter	= new Zend_Auth_Adapter_DbTable(
-					$adapter, $tableAdmin, 'login',
-					'pass', 'MD5(?) AND active = 1'
+					$adapter,
+					$tableAdmin,
+					'login',
+					'pass',
+					'MD5(?) AND active = 1'
 				);
 
 				$authAdapter->setIdentity( $form->login->getValue() );
@@ -33,9 +41,9 @@ class AuthController extends Zend_Controller_Action
 						null,
 						array('activate', 'password', 'enabled'));
 					$storage_data->status = 'admin';
-					$storage->write($storage_data);
+					$storage->write( $storage_data );
 
-					$this->_redirect('/');
+					$this->redirect('/');
 				}
 				else {
 					$this->_helper->FlashMessenger('Неправильный логин или пароль!');

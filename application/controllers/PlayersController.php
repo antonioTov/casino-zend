@@ -5,14 +5,6 @@ class PlayersController extends Zend_Controller_Action
 
     function init()
     {
-		$auth = Zend_Auth::getInstance();
-		$data = $auth->getStorage()->read();
-
-		if ( ! isset( $data->status ) )
-		{
-			$this->_redirect('/auth');
-		}
-
 		$ajaxContext = $this->_helper->getHelper('AjaxContext');
 		$ajaxContext->addActionContext('checklogin', 'json')
 			->initContext();
@@ -31,11 +23,40 @@ class PlayersController extends Zend_Controller_Action
 	 */
 	function indexAction()
     {
-		$players 		= new Application_Model_DbTable_Players();
-		$searchForm	= new Application_Form_Search();
 
-		$this->view->searchForm	= $searchForm;
-		$this->view->players 			= $players->getAll();
+		$frontendOptions = array(
+			'lifetime' => 10,
+			'automatic_serialization' => true,
+			'regexps' => array(
+				'^/$' => array('cache' => true),
+				'^/players/' => array('cache' => true)
+			)
+		);
+
+		$backendOptions = array('cache_dir' => './tmp/');
+
+		$cache = Zend_Cache::factory('Output',
+			'File',
+			$frontendOptions,
+			$backendOptions);
+
+		// передаем уникальный идентификатор методу start()
+		if( ! $playersData = $cache->load('players') ) {
+		// производим вывод, как обычно:
+
+			$players 		= new Application_Model_DbTable_Players();
+			$searchForm	= new Application_Form_Search();
+
+			$this->view->searchForm	= $searchForm;
+			$playersData 			= $players->getAll();
+
+			$cache->save($playersData);
+
+
+		}
+
+		$this->view->players = $playersData;
+
     }
 
 
@@ -69,7 +90,7 @@ class PlayersController extends Zend_Controller_Action
 
 				$player->addPlayer( $data );
 
-                $this->_redirect('/');
+                $this->redirect('/');
             } else {
                 $form->populate( $formData );
             }

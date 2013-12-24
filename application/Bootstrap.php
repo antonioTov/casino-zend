@@ -3,24 +3,28 @@
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
 
+
+	// Инициализация плагина авторизации
 	public function _initAuth()
 	{
-		$auth = Zend_Auth::getInstance();
-		$data = $auth->getStorage()->read();
+		Zend_Auth::getInstance()->getStorage()->read();
 
-		if ( ! isset( $data->status ) )
-		{
+		$this->_register( new Application_Plugin_AuthCheck() );
+	}
 
-//			$storage_data = new stdClass();
-//			$storage_data->status = 'guest';
-//			$auth->getStorage()->write($storage_data);
-			/*
-			$frontController = Zend_Controller_Front::getInstance();
-			$response = new Zend_Controller_Response_Http();
-			$response->setRedirect('/auth');
-			$frontController->setResponse($response);
-			*/
-		}
+
+	// Инициализация плагина прав доступа
+	public function _initAcl()
+	{
+		$this->_register( new Application_Plugin_AccessCheck() );
+	}
+
+
+	// Регистрация плагинов
+	private function _register( Zend_Controller_Plugin_Abstract $plugin )
+	{
+		Zend_Controller_Front::getInstance()
+			->registerPlugin( $plugin );
 	}
 
 }

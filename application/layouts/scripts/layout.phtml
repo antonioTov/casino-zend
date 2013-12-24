@@ -44,7 +44,7 @@ echo $this->doctype(); ?>
 			</div>
 			<div class="jqueryslidemenu" style="float: right;">
 				<ul>
-					<li><span class="auth-name"><?php if (Zend_Auth::getInstance()->getIdentity()) echo Zend_Auth::getInstance()->getIdentity()->login?></span></li>
+					<li><span class="auth-name"><?php if ( Zend_Auth::getInstance()->getIdentity() ) echo Zend_Auth::getInstance()->getIdentity()->login?></span></li>
 					<li><a href="/auth/logout">Выход</a></li>
 				</ul>
 			</div>
