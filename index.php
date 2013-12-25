@@ -1,4 +1,5 @@
 <?php
+// version 3
 $time_start = microtime(true);
 ini_set("display_errors", true);
 // Define path to application directory
@@ -11,8 +12,7 @@ defined('APPLICATION_ENV')
 
 // Ensure library/ is on include_path
 set_include_path(implode(PATH_SEPARATOR, array(
-    $_SERVER["DOCUMENT_ROOT"].'/library',
-    //get_include_path(),
+    $_SERVER["DOCUMENT_ROOT"].'/library'
 )));
 
 /** Zend_Application */
