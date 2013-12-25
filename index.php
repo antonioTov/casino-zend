@@ -1,5 +1,4 @@
 <?php
-// version 3
 $time_start = microtime(true);
 ini_set("display_errors", true);
 // Define path to application directory
