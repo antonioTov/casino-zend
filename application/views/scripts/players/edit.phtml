@@ -1,9 +1,12 @@
 <div class='legend'>
-	<div style='float: left;'><?php echo $this->textLegend ?>: <span> <?php echo $this->subject ?></span></div>
-	<div class='mini_tool'>
-		<img src='/design/img/back.png' height='22' onclick='history.back()' title='Назад'>
-		<a id='save' href='#'><img src='/design/img/save.png' height='22' title='Сохранить'></a>
+	<div class='mini-tool'>
+		<a href="#" class="ic" onclick='history.back(); return false;' title='Назад'><i class="fa fa-backward"></i></a>
+		<a href="#" class="ic"  title='Копировать'><i class="fa fa-copy"></i></a>
+		<a id='save' class="ic"  href='#' title="Сохранить"><i class="fa fa-save"></i></a>
 	</div>
 </div>
 
-<?php echo $this->form ;?>
+<div class="panel">
+	<header class="panel-heading"><?php echo $this->textLegend . ': ' . $this->subject ?></header>
+	<?php echo $this->form ;?>
+</div>

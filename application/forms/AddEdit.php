@@ -15,7 +15,7 @@ class Application_Form_AddEdit extends Zend_Form
 		$username = new Zend_Form_Element_Text('username');
 		$username->setLabel('Username')
 			->setRequired(true)
-			->setAttrib('class', 'f')
+			->setAttrib('class', 'form-control')
 			->setAttrib('autocomplete', 'off')
 			->addFilter('StripTags')
 			->addFilter('StringTrim')
@@ -38,7 +38,7 @@ class Application_Form_AddEdit extends Zend_Form
 		// First name
 		$firstName = new Zend_Form_Element_Text('first_name');
 		$firstName->setRequired(true)
-			->setAttrib('class', 'f')
+			->setAttrib('class', 'form-control')
 			->addFilter('StripTags')
 			->addFilter('StringTrim')
 			->setDecorators( array('ViewHelper', 'Errors') )
@@ -52,7 +52,7 @@ class Application_Form_AddEdit extends Zend_Form
 		$lastName = new Zend_Form_Element_Text('last_name');
 		$lastName->setLabel('Last name')
 			->setRequired(true)
-			->setAttrib('class', 'f')
+			->setAttrib('class', 'form-control')
 			->addFilter('StripTags')
 			->addFilter('StringTrim')
 			->setDecorators( array('ViewHelper', 'Errors') )
@@ -66,7 +66,7 @@ class Application_Form_AddEdit extends Zend_Form
 		$birthDate = new Zend_Form_Element_Text('birth_date');
 		$birthDate->setLabel('Date of birth')
 			->setRequired(true)
-			->setAttrib('class', 'f')
+			->setAttrib('class', 'form-control')
 			->setAttrib('id', 'datepicker')
 			->setAttrib('autocomplete', 'off')
 			->addFilter('StripTags')
@@ -82,7 +82,7 @@ class Application_Form_AddEdit extends Zend_Form
 		$email = new Zend_Form_Element_Text('email');
 		$email->setLabel('E-mail')
 			->setRequired(true)
-			->setAttrib('class', 'f')
+			->setAttrib('class', 'form-control')
 			->addFilter('StripTags')
 			->addFilter('StringTrim')
 			->setDecorators( array('ViewHelper', 'Errors') )

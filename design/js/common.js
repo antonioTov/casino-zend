@@ -15,7 +15,7 @@ $(document).ready(function(){
 //-------------------------------------------------//
 // ѕроверка на уникальность имени игрока
 //-------------------------------------------------//
-    var inputUN = $('.add_edit_form input[name="username"]');
+    var inputUN = $('#add_edit_form input[name="username"]');
 
     inputUN.on('keyup', function() {
 
@@ -77,9 +77,9 @@ $(document).ready(function(){
 //-------------------------------------------------//
 	$("#check_all").click(function() {
         if( $(this).prop('checked'))
-            $('input[type="checkbox"][name*="check"]').prop('checked', true).parent().parent().parent().addClass('tr_select');
+            $('input[type="checkbox"][name*="check"]').prop('checked', true).parent().parent().addClass('selected');
         else 
-            $('input[type="checkbox"][name*="check"]').prop('checked', false).parent().parent().parent().removeClass('tr_select');
+            $('input[type="checkbox"][name*="check"]').prop('checked', false).parent().parent().removeClass('selected');
 	});
     
 //-------------------------------------------------//
@@ -87,9 +87,9 @@ $(document).ready(function(){
 //-------------------------------------------------//
     $('input[type="checkbox"]').not(("#check_all")).click(function(){
         if($(this).prop("checked")) 
-            $(this).parent().parent().parent().addClass('tr_select');
+            $(this).parent().parent().addClass('selected');
         else 
-            $(this).parent().parent().parent().removeClass('tr_select');
+            $(this).parent().parent().removeClass('selected');
     });
 
 //-------------------------------------------------//

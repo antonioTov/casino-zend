@@ -35,8 +35,7 @@ class PlayersController extends Zend_Controller_Action
 
 		$backendOptions = array('cache_dir' => './tmp/');
 
-		$cache = Zend_Cache::factory('Output',
-			'File',
+		$cache = Zend_Cache::factory('Output','File',
 			$frontendOptions,
 			$backendOptions);
 
@@ -45,16 +44,15 @@ class PlayersController extends Zend_Controller_Action
 		// производим вывод, как обычно:
 
 			$players 		= new Application_Model_DbTable_Players();
-			$searchForm	= new Application_Form_Search();
+			$playersData 	= $players->getAll();
 
-			$this->view->searchForm	= $searchForm;
-			$playersData 			= $players->getAll();
-
-			$cache->save($playersData);
-
+			$cache->save( $playersData );
 
 		}
 
+		$searchForm	= new Application_Form_Search();
+
+		$this->view->searchForm	= $searchForm;
 		$this->view->players = $playersData;
 
     }
@@ -128,7 +126,7 @@ class PlayersController extends Zend_Controller_Action
 
 				$players->updatePlayer( $id, $data );
 
-                $this->_redirect('/');
+                $this->redirect('/');
 
             } else {
                 $form->populate( $formData );
@@ -157,7 +155,7 @@ class PlayersController extends Zend_Controller_Action
 		$players = new Application_Model_DbTable_Players();
 		$players->deletePlayer( $id );
 
-		$this->_redirect('/');
+		$this->redirect('/');
     }
 
 
@@ -256,6 +254,7 @@ class PlayersController extends Zend_Controller_Action
 				}
 			}
 
+
 			// если не сформировалось условие, то ничего не выводим
 			if ( !$condition ) {
 				$condition = ' 0 ';
@@ -264,6 +263,9 @@ class PlayersController extends Zend_Controller_Action
 				$condition = substr( $condition, 0, -3 );
 			}
 
+		}
+		else {
+			$condition = ' 0 ';
 		}
 
 

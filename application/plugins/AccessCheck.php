@@ -1,4 +1,9 @@
 <?php
+/**
+ * Class Application_Plugin_AccessCheck
+ *
+ * Полагин для реализации прав доступа ролей к ресурсам
+ */
 class Application_Plugin_AccessCheck extends Zend_Controller_Plugin_Abstract
 {
 
@@ -51,7 +56,7 @@ class Application_Plugin_AccessCheck extends Zend_Controller_Plugin_Abstract
 		// разрешаем гостю просматривать ресурс auth и его подресурсы
 		$this->_acl->allow('guest', 'auth', array('index', 'login', 'logout'));
 
-		// даём администратору доступ к ресурсам 'add', 'edit' и 'delete'
+		// даём администратору доступ к всем ресурсам
 		$this->_acl->allow('admin');
 
 		// разрешаем администратору просматривать страницу ошибок
