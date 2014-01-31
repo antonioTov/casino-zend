@@ -88,10 +88,11 @@ class Application_Model_DbTable_Players extends Zend_Db_Table_Abstract
 	 * Обновление данных игрока
 	 * @param $id
 	 * @param $data
+	 * @return int
 	 */
 	public function updatePlayer( $id, $data )
 	{
-		$this->update( $data, 'id = '. (int) $id );
+		return $this->update( $data, 'id = '. (int) $id );
 	}
 
 

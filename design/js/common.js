@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-
+/*
     $( "#datepicker" ).datepicker({
         changeMonth: true,
         changeYear: true,
@@ -9,7 +9,7 @@ $(document).ready(function(){
         maxDate: new Date(1995, 12 - 1, 31),
         dateFormat: 'dd.mm.yy'
     });
-
+*/
 
 
 //-------------------------------------------------//

@@ -1,5 +1,5 @@
 <div class="tool-bar">
-	<a href="<?php echo $this->url(array('controller' => 'players', 'action' => 'add'), null, true) ?>" class="btn btn-primary">Добавить игрока</a>
+	<a href="<?php echo $this->url(array('controller' => 'players', 'action' => 'add'), null, true) ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Добавить игрока</a>
 </div>
 
 <div class="clear"></div>
@@ -10,7 +10,7 @@
 
 		<section class="panel">
 
-			<header class="panel-heading">Список игроков</header>
+			<header class="panel-heading"><i class="fa fa-list-alt"></i> Список игроков</header>
 
 			<table class="view-table">
 				<thead>
@@ -22,6 +22,7 @@
 					<th>Date of birth</th>
 					<th>E-mail</th>
 					<th>Create admin</th>
+					<th class="w40">See</th>
 					<th class="w40">Edit</th>
 					<th class="w40">Delete</th>
 				</tr>
@@ -36,8 +37,9 @@
 						<td><? echo date( 'd.m.Y', strtotime($player->birth_date) ) ?></td>
 						<td><? echo $player->email ?></td>
 						<td><? echo $player->adminLogin ?></td>
-						<td><a class="ic" href="<?php echo $this->url(array('controller' => 'players', 'action' => 'edit', 'id' => $player->id)) ?>" title="редактировать"><i class="fa fa-edit"></i></a></td>
-						<td><a class="ic" href="<?php echo $this->url(array('controller' => 'players', 'action' => 'delete', 'id' => $player->id)) ?>" title="удалить"><i class="fa fa-trash-o" ></i></a></td>
+						<td class="td_center"><a class="ic" href="#" title="смтореть на сайте"><i class="fa fa-eye"></i></a></td>
+						<td class="td_center"><a class="ic" href="<?php echo $this->url(array('controller' => 'players', 'action' => 'edit', 'id' => $player->id)) ?>" title="редактировать"><i class="fa fa-edit"></i></a></td>
+						<td class="td_center"><a class="ic" href="<?php echo $this->url(array('controller' => 'players', 'action' => 'delete', 'id' => $player->id)) ?>" title="удалить"><i class="fa fa-trash-o" ></i></a></td>
 					</tr>
 				<? }	?>
 
@@ -50,7 +52,7 @@
 						<option value="">Действие...</option>
 						<option value="delete">Удалть</option>
 					</select>
-					<a href="#" class="btn btn-white" id="event_apply">Применить</a>
+					<a href="#" class="btn btn-white btn-sm" id="event_apply">Применить</a>
 				</div>
 			</footer>
 

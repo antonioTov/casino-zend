@@ -66,8 +66,8 @@ class Application_Form_AddEdit extends Zend_Form
 		$birthDate = new Zend_Form_Element_Text('birth_date');
 		$birthDate->setLabel('Date of birth')
 			->setRequired(true)
-			->setAttrib('class', 'form-control')
-			->setAttrib('id', 'datepicker')
+			->setAttrib('class', 'input-sm form-control datepicker')
+			->setAttrib('data-date-format', 'dd.mm.yy')
 			->setAttrib('autocomplete', 'off')
 			->addFilter('StripTags')
 			->addFilter('StringTrim')

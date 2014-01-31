@@ -11,7 +11,6 @@ echo $this->doctype(); ?>
 
 	<title><?=$_SERVER["HTTP_HOST"];?> | Admin Panel</title>
 
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="/design/css/app.v2.css" />
 	<link rel="stylesheet" type="text/css" href="/design/css/admin_style.css" />
 
@@ -19,11 +18,6 @@ echo $this->doctype(); ?>
 	<link rel="shortcut icon" href="/design/img/favicon.ico">
 
 	<script type="text/javascript" src="/design/js/jquery-1.9.1.min.js"></script>
-	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-
-	<!--[if lt IE 7]>
-	<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE7.js"></script>
-	<![endif]-->
 
 
 </head>
@@ -52,7 +46,7 @@ echo $this->doctype(); ?>
 
 				<ul class="mainMenu" style="float: right;">
 						<li><span class="auth-name"><?php if ( Zend_Auth::getInstance()->getIdentity() ) echo Zend_Auth::getInstance()->getIdentity()->login?></span></li>
-						<li><a href="/auth/logout">Выход</a></li>
+						<li><a href="/auth/logout"><i class="fa fa-sign-out"></i> Выход</a></li>
 					</ul>
 
 			</div>
@@ -65,7 +59,10 @@ echo $this->doctype(); ?>
 	</div>
 
 </div>
+
 <script type="text/javascript" src="/design/js/common.js"></script>
+<script type="text/javascript" src="/design/js/app.v2.js"></script>
+<script type="text/javascript" src="/design/js/bootstrap-datepicker.js"></script>
 
 </body>
 </html>

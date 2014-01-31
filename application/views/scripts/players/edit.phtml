@@ -1,3 +1,10 @@
+<?
+	if ( $this->message ) {
+		foreach( $this->message as $message ) { ?>
+			<div class="alert alert-<?php echo $this->alertClass ?>"> <button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button> <strong><?php	echo $this->escape($message) ?></strong></div>
+<? } } ?>
+
+
 <div class='legend'>
 	<div class='mini-tool'>
 		<a href="#" class="ic" onclick='history.back(); return false;' title='Назад'><i class="fa fa-backward"></i></a>

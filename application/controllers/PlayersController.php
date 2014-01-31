@@ -113,6 +113,7 @@ class PlayersController extends Zend_Controller_Action
         if ( $this->getRequest()->isPost() )
 		{
             $formData = $this->getRequest()->getPost();
+
             if ( $form->isValid( $formData ) )
 			{
 				$data = array(
@@ -124,24 +125,27 @@ class PlayersController extends Zend_Controller_Action
 					'admin_id'		=> $form->getValue('admin_id')
 				);
 
-				$players->updatePlayer( $id, $data );
-
-                $this->redirect('/');
+				if( $players->updatePlayer( $id, $data ) ) {
+					$this->view->alertClass = 'success';
+					$this->_helper->FlashMessenger('Данные успешно изменены!');
+				}
 
             } else {
-                $form->populate( $formData );
-            }
-        } else {
-
-				$data = $players->getPlayer( $id );
-
-				$this->view->textLegend	= 'Редактирование игрока';
-				$this->view->subject		 	= $data['username'];
-				$this->view->form 				= $form;
-
-                $form->populate( $data );
+				$this->view->alertClass = 'danger';
+				$this->_helper->FlashMessenger('Ошибка заполнения формы!');
+			}
 
         }
+
+		$data = $players->getPlayer( $id );
+
+		$this->view->textLegend	= 'Редактирование игрока';
+		$this->view->subject		 	= $data['username'];
+		$this->view->form 				= $form;
+
+		$form->populate( $data );
+
+		$this->view->message = $this->getHelper('FlashMessenger')->getCurrentMessages();
     }
 
 
